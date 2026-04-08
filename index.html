@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Heat Index Checker</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link href="styles.css" rel="stylesheet">
+
+
+	<style>
+		body{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			font-family: arial;
+			background-color: #f2f2f2;
+
+			position: absolute;
+			top: 60%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+	</style>
+
+</head>
+<body>
+
+	<div>
+		<br>
+		<br>
+		<h1 style="text-align: center; font-weight: bold; color: #b31c12;">🔥Heat Index Checker🔥</h1>
+
+		<br>
+		<br>
+
+		<div style="justify-self: center; background-color: #8a8686; padding: 20px; text-align: center; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-bottom: 5%; width: 100%;"> 
+			<table class="table table-striped">
+			  	<thead>
+			    	<tr >
+			      		<th scope="col" style="background-color: #bdbdbd">Temperature (°C)</th>
+			      		<th scope="col" style="background-color: #bdbdbd">Humidity (%)</th>
+			      		<th scope="col" style="background-color: #bdbdbd">Heat Index Range (°C)</th>
+			      		<th scope="col" style="background-color: #bdbdbd">Status / Description</th>
+			    	</tr>
+			  	</thead>
+			  	<tbody>
+				    <tr>
+				      	<th scope="row">20 – 24</th>
+				      	<th scope="row">30 – 50</th>
+				      	<th scope="row" style="color: #b31c12;">≤ 27</td>
+				      	<td>Comfortable / Cool</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">25 – 27</th>
+				      	<th scope="row">40 – 60</th>
+				      	<th scope="row" style="color: #b31c12;">28 – 32</td>
+				      	<td>Warm</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">28 – 31</th>
+				      	<th scope="row">50 – 70</th>
+				      	<th scope="row" style="color: #b31c12;">33 – 37</td>
+				      	<td>Hot</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">32 – 35</th>
+				      	<th scope="row">60 – 80</th>
+				      	<th scope="row" style="color: #b31c12;">38 – 41</td>
+				      	<td>Very Hot / Caution</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">36+</th>
+				      	<th scope="row">70 – 100</th>
+				      	<th scope="row" style="color: #b31c12;">≥ 42</td>
+				      	<td>Extreme Heat / Danger</td>
+				    </tr>
+			  	</tbody>
+			</table>
+		</div>
+
+		<div style="justify-self: center; background-color: #8a8686; padding: 20px; width: 50%; text-align: center; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+			<h2>🌡️🌡️🌡️</h2>
+			<input type="Number" id="temperature" class="form-control" placeholder="Enter current temperature in °C">
+			<br>
+			<h2>🌦️🌦️🌦️</h2>
+			<input type="Number" id="humidity" class="form-control" placeholder="Enter humidity percentage value">
+			<br>
+			<button onclick="compute()" class="form-control" style="background-color: #fcb04b; color: #b31c12; border: none; font-weight: bold;">COMPUTE</button>
+		</div>
+		<br>
+		<br>
+	</div>
+
+	<script>
+		function compute(){
+			var temperature = parseInt(document.getElementById("temperature").value);
+			var humidity = parseInt(document.getElementById("humidity").value);
+
+			let heatindex = temperature + (0.33 * humidity) - 4;
+
+			switch(true){
+				case (heatindex <= 27):
+					alert("The heat index is less than 27. Expect comfortable and cool weather.");
+					break;
+				case (heatindex >= 28 && heatindex <= 32):
+					alert("The heat index is around 28 to 32. Expect warm weather.");
+					break;
+				case (heatindex >= 33 && heatindex <= 37):
+					alert("The heat index is around 33 to 37. Expect hot weather.");
+					break;
+				case (heatindex >= 38 && heatindex <= 41):
+					alert("The heat index is around 38 to 41. Expect very hot weather. Practice caution.");
+					break;
+				case (heatindex >= 42):
+					alert("The heat index is greater than 41. Expect extreme, dangerous heat.");
+					break;
+				default:
+					alert("Unable to calculate. Please check given input.");
+			}
+		}
+	</script>
+
+</body>
+</html>
